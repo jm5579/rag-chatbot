@@ -1,8 +1,16 @@
-# RAG Chatbot
+# Document Q&A
 
 A document question-answering application built with Streamlit, FAISS, and Groq.
-Upload any PDF and ask questions about it in natural language using a retrieval
-augmented generation pipeline.
+Upload any PDF directly from the browser and ask questions about it using a
+retrieval augmented generation pipeline.
+
+## Features
+
+- Upload any PDF directly from the browser
+- Automatic chunking and vector indexing on upload
+- Sidebar showing loaded document name and total chunks indexed
+- Conversational chat interface with message history
+- Clear chat button to reset the conversation
 
 ## How It Works
 
@@ -32,31 +40,24 @@ Install dependencies:
 
     pip install -r requirements.txt
 
-Create a .env file in the root directory with your Groq API key:
+Create a .env file in the root directory:
 
     GROQ_API_KEY=your-groq-api-key-here
 
-Place a PDF file inside the data/ directory.
-
-Run the ingestion script to chunk the document and build the vector index:
-
-    python ingest.py
-
-Launch the application:
+Run the application:
 
     streamlit run app.py
 
+Upload a PDF using the sidebar and start asking questions.
+
 ## Project Structure
 
-    app.py              Streamlit UI and chat interface
-    ingest.py           PDF loading, chunking, and FAISS index creation
+    app.py              Streamlit UI, PDF processing, and chat interface
     retriever.py        Semantic search over the FAISS index
     requirements.txt    Python dependencies
-    data/               Directory for input PDF files
-    faiss_index/        Auto-generated vector store (created after running ingest.py)
+    faiss_index/        Auto-generated vector store (created on first upload)
 
-## Notes
+## Versions
 
-The faiss_index/ and data/ directories are excluded from version control.
-Each user must run ingest.py locally after adding their own PDF to the data/ folder.
-The embedding model is downloaded automatically on first run.
+- v1.0.0 Initial working version with manual PDF ingestion
+- v1.1.0 Added browser PDF uploader, sidebar with document info, and clear chat button
